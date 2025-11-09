@@ -1,0 +1,123 @@
+{
+    "layer": "top",
+    "position": "top",
+    "reload_style_on_change": true,
+    "modules-left": [ "custom/icon", "custom/notification", "hyprland/window" ],
+    "modules-center": [ "hyprland/workspaces" ],
+    "modules-right": [ "group/expand", "tray", "network", "clock" ],
+
+    "custom/icon": {
+      "format": "",
+      "tooltip": false
+    },
+
+    "hyprland/window": {
+      "format": "{}",
+      "max-length": 50,
+      "rewrite": {
+        "foot": "Terminal",
+        "(.*) - Mozilla Firefox": "󰖟 $1",
+        "": "Desktop"
+      }
+    },
+
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "active": "",
+        "default": "", 
+        "empty": ""
+      },
+      "persistent-workspaces": {
+        "*": [ 1,2,3,4,5 ]
+      }
+    },
+
+    "clock": {
+      "format": "{:%I:%M %p}",
+      "interval": 1,
+      "tooltip-format": "<tt>{calendar}</tt>",
+      "calendar": {
+        "format": {
+          "today": "<span color='#fAfBfC'><b>{}</b></span>"
+        }
+      },
+      "actions": {
+        "on-click-right": "shift_down",
+        "on-click": "shift_up"
+      }
+    },
+
+    "network": {
+      "format-wifi": "",
+      "format-ethernet": "󰈀",
+      "format-disconnected": "",
+      "tooltip-format-disconnected": "Disconnected ⚠",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+      "tooltip-format-ethernet": "{ifname} 󰈀"
+    },
+
+    "battery": {
+      "interval": 30,
+      "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{capacity}% {icon}",
+      "format-charging": "{capacity}% 󰂄",
+      "format-plugged": "{capacity}% 󰂄 ",
+      "format-alt": "{time} {icon}",
+      "format-icons": ["", "", "", "", ""]
+    },
+    "custom/notification": {
+      "tooltop": false,
+      "format": "",
+      "on-click": "dunstctl set-paused toggle && notify-send 'Notification' 'Activated'",
+      "escape": true
+    },
+    "custom/endpoint": {
+      "format": "|",
+      "tooltip": false
+    },
+    "custom/expand": {
+      "format": "",
+      "tooltip": false
+    },
+    "group/expand": {
+      "orientation": "horizontal",
+      "drawer": {
+        "transition-duration": 600,
+        "transition-to-left": true,
+        "click-to-reveal": true
+      },
+      "modules": [ "custom/expand", "cpu", "memory", "temperature", "custom/endpoint" ]
+    },
+    "custom/media": {
+      "format": "{icon} {text}",
+      "return-type": "json",
+      "max-length": 40,
+      "format-icons": {
+        "spotify": "",
+        "default": "🎜"
+      },
+      "escape": true,
+      "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+                                                                 // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "tray": {
+      "icon-size": 24,
+      "spacing": 10
+    },
+    "cpu": {
+      "format": "{usage}% ",
+      "tooltip": true
+    },
+    "memory": {
+      "format": "{}% "
+    },
+    "temperature": {
+      "critical-threshold": 80,
+      "format": "{temperatureC}°C "
+    }
+}

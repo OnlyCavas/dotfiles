@@ -1,0 +1,16 @@
+configuration {
+  // modi: "drun,run,window";
+  modi: "drun";
+  window-opacity: 85;
+  show-icons: true;
+  terminal: "foot";
+  drun-display-format: "{name}";
+  disable-history: false;
+  hide-scrollbar: true;
+  display-drun: " Apps";
+  display-run: " Run";
+  display-window: " Window";
+  sidebar-mode: true;
+}
+
+@theme ".cache/wal/colors-rofi.rasi"
